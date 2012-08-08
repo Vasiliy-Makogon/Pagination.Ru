@@ -268,17 +268,6 @@ class Krugozor_Pagination_Manager
     }
 
     /**
-     * Возвращает номер страницы для формирования ссылки («««).
-     *
-     * @param void
-     * @return int
-     */
-    public function getFirstPage()
-    {
-        return $this->limit;
-    }
-
-    /**
      * Возвращает номер страницы для формирования ссылки (»»»).
      *
      * @param void

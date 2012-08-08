@@ -422,7 +422,7 @@ class Krugozor_Pagination_Helper
         $qs = $this->createQueryString();
     ?>
     <? if ($this->view_first_page_label && $this->manager->getCurrentSeparator() && $this->manager->getCurrentSeparator() != 1): ?>
-        &nbsp;<a<?=$this->createInlineCssClassDeclaration('first_page_class', 'normal_link_class')?> title="<?=$this->html['first_page_title']?>" href="<?=$self_uri?>?<?=$qs?><?=$this->manager->getPageName()?>=<?=$this->manager->getFirstPage()?>&amp;<?=$this->manager->getSeparatorName()?>=1<?=$this->createFragmentIdentifier()?>"><?=$this->html['first_page_anchor']?></a>&nbsp;
+        &nbsp;<a<?=$this->createInlineCssClassDeclaration('first_page_class', 'normal_link_class')?> title="<?=$this->html['first_page_title']?>" href="<?=$self_uri?>?<?=$qs?><?=$this->manager->getPageName()?>=1&amp;<?=$this->manager->getSeparatorName()?>=1<?=$this->createFragmentIdentifier()?>"><?=$this->html['first_page_anchor']?></a>&nbsp;
     <? endif; ?>
 
     <? if ($this->view_previous_block_label && $this->manager->getPreviousBlockSeparator()): ?>
