@@ -1,5 +1,5 @@
 <?php 
-/** 
+/**
  * @link http://pagination.ru/
  * @author Vasiliy Makogon, makogon.vs@gmail.com
  */
