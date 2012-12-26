@@ -6,24 +6,24 @@
 class Krugozor_Pagination_Helper
 {
     /**
-     * Стандартный вид пагинации:
-     * «««  ««  «  1 2 3 4 5 6 7 8 9 10  »  »»  »»»
+     * РЎС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РІРёРґ РїР°РіРёРЅР°С†РёРё:
+     * В«В«В«  В«В«  В«  1 2 3 4 5 6 7 8 9 10  В»  В»В»  В»В»В»
      *
      * @var int
      */
     const PAGINATION_NORMAL_TYPE = 1;
 
     /**
-     * Вид интервальной декрементной пагинации:
-     * «««  ««  «  50-41 40-31 30-21 20-11 10-1  »  »»  »»»
+     * Р’РёРґ РёРЅС‚РµСЂРІР°Р»СЊРЅРѕР№ РґРµРєСЂРµРјРµРЅС‚РЅРѕР№ РїР°РіРёРЅР°С†РёРё:
+     * В«В«В«  В«В«  В«  50-41 40-31 30-21 20-11 10-1  В»  В»В»  В»В»В»
      *
      * @var int
      */
     const PAGINATION_DECREMENT_TYPE = 2;
 
     /**
-     * Вид интервальной инкрементной пагинации:
-     * «««  ««  «  1-10 11-20 21-30 31-40 41-50  »  »»  »»»
+     * Р’РёРґ РёРЅС‚РµСЂРІР°Р»СЊРЅРѕР№ РёРЅРєСЂРµРјРµРЅС‚РЅРѕР№ РїР°РіРёРЅР°С†РёРё:
+     * В«В«В«  В«В«  В«  1-10 11-20 21-30 31-40 41-50  В»  В»В»  В»В»В»
      *
      * @var int
      */
@@ -35,79 +35,79 @@ class Krugozor_Pagination_Helper
     private $manager;
 
     /**
-     * Хранилище CSS-классов для каждого <a> элемента пагинатора.
+     * РҐСЂР°РЅРёР»РёС‰Рµ CSS-РєР»Р°СЃСЃРѕРІ РґР»СЏ РєР°Р¶РґРѕРіРѕ <a> СЌР»РµРјРµРЅС‚Р° РїР°РіРёРЅР°С‚РѕСЂР°.
      *
      * @var array
      */
     private $styles = array();
 
     /**
-     * Хранилище пар ключ=>значение для подстановки в QUERY_STRING
-     * гиперссылок пагинатора.
+     * РҐСЂР°РЅРёР»РёС‰Рµ РїР°СЂ РєР»СЋС‡=>Р·РЅР°С‡РµРЅРёРµ РґР»СЏ РїРѕРґСЃС‚Р°РЅРѕРІРєРё РІ QUERY_STRING
+     * РіРёРїРµСЂСЃСЃС‹Р»РѕРє РїР°РіРёРЅР°С‚РѕСЂР°.
      *
      * @var array
      */
     private $request_uri_params = array();
 
     /**
-     * Якоря и title для всех элементов <a> пагинатора.
+     * РЇРєРѕСЂСЏ Рё title РґР»СЏ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ <a> РїР°РіРёРЅР°С‚РѕСЂР°.
      *
      * @var array
      */
     private $html = array
     (
-        'first_page_anchor'  => '«««',
-        'previous_block_anchor'  => '««',
-        'previous_page_anchor'   => '«',
-        'next_page_anchor'  => '»',
-        'next_block_anchor' => '»»',
-        'last_page_anchor'   => '»»»',
+        'first_page_anchor'  => 'В«В«В«',
+        'previous_block_anchor'  => 'В«В«',
+        'previous_page_anchor'   => 'В«',
+        'next_page_anchor'  => 'В»',
+        'next_block_anchor' => 'В»В»',
+        'last_page_anchor'   => 'В»В»В»',
 
-        'first_page_title' => 'На первую страницу',
-        'previous_block_title' => 'Предыдущие страницы',
-        'previous_page_title'  => 'Предыдущая страница',
-        'next_page_title' => 'Следующая страница',
-        'next_block_title' => 'Следующие страницы',
-        'last_page_title'  => 'На последнюю страницу',
+        'first_page_title' => 'РќР° РїРµСЂРІСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ',
+        'previous_block_title' => 'РџСЂРµРґС‹РґСѓС‰РёРµ СЃС‚СЂР°РЅРёС†С‹',
+        'previous_page_title'  => 'РџСЂРµРґС‹РґСѓС‰Р°СЏ СЃС‚СЂР°РЅРёС†Р°',
+        'next_page_title' => 'РЎР»РµРґСѓСЋС‰Р°СЏ СЃС‚СЂР°РЅРёС†Р°',
+        'next_block_title' => 'РЎР»РµРґСѓСЋС‰РёРµ СЃС‚СЂР°РЅРёС†С‹',
+        'last_page_title'  => 'РќР° РїРѕСЃР»РµРґРЅСЋСЋ СЃС‚СЂР°РЅРёС†Сѓ',
     );
 
     /**
-     * Показывать ли элемент <a> '«««'.
+     * РџРѕРєР°Р·С‹РІР°С‚СЊ Р»Рё СЌР»РµРјРµРЅС‚ <a> 'В«В«В«'.
      *
      * @var bool
      */
     private $view_first_page_label = true;
 
     /**
-     * Показывать ли элемент <a> '»»»'.
+     * РџРѕРєР°Р·С‹РІР°С‚СЊ Р»Рё СЌР»РµРјРµРЅС‚ <a> 'В»В»В»'.
      *
      * @var bool
      */
     private $view_last_page_label = true;
 
     /**
-     * Показывать ли элемент <a> '««'.
+     * РџРѕРєР°Р·С‹РІР°С‚СЊ Р»Рё СЌР»РµРјРµРЅС‚ <a> 'В«В«'.
      *
      * @var bool
      */
     private $view_previous_block_label = true;
 
     /**
-     * Показывать ли элемент <a> '»»'.
+     * РџРѕРєР°Р·С‹РІР°С‚СЊ Р»Рё СЌР»РµРјРµРЅС‚ <a> 'В»В»'.
      *
      * @var bool
      */
     private $view_next_block_label = true;
 
     /**
-     * Идентификатор фрагмента (#primer), ссылающийся на некоторую часть открываемого документа.
+     * РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ С„СЂР°РіРјРµРЅС‚Р° (#primer), СЃСЃС‹Р»Р°СЋС‰РёР№СЃСЏ РЅР° РЅРµРєРѕС‚РѕСЂСѓСЋ С‡Р°СЃС‚СЊ РѕС‚РєСЂС‹РІР°РµРјРѕРіРѕ РґРѕРєСѓРјРµРЅС‚Р°.
      *
      * @var string
      */
     private $fragment_identifier;
 
     /**
-     * Тип интерфейса пагинатора (см. константы класса PAGINATION_*_TYPE).
+     * РўРёРї РёРЅС‚РµСЂС„РµР№СЃР° РїР°РіРёРЅР°С‚РѕСЂР° (СЃРј. РєРѕРЅСЃС‚Р°РЅС‚С‹ РєР»Р°СЃСЃР° PAGINATION_*_TYPE).
      *
      * @var int
      */
@@ -122,7 +122,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Возвращает объект Krugozor_Pagination_Manager
+     * Р’РѕР·РІСЂР°С‰Р°РµС‚ РѕР±СЉРµРєС‚ Krugozor_Pagination_Manager
      *
      * @param void
      * @return Krugozor_Pagination_Manager
@@ -133,7 +133,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает тип интерфейса пагинатора.
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ С‚РёРї РёРЅС‚РµСЂС„РµР№СЃР° РїР°РіРёРЅР°С‚РѕСЂР°.
      *
      * @param int
      * @return Krugozor_Pagination_Helper
@@ -146,8 +146,8 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает очередной параметр для QUERY_STRING
-     * гиперссылок пагинатора.
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РѕС‡РµСЂРµРґРЅРѕР№ РїР°СЂР°РјРµС‚СЂ РґР»СЏ QUERY_STRING
+     * РіРёРїРµСЂСЃСЃС‹Р»РѕРє РїР°РіРёРЅР°С‚РѕСЂР°.
      *
      * @param string $key
      * @param string $value
@@ -161,7 +161,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает, показывать ли элемент <a> '«««'.
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚, РїРѕРєР°Р·С‹РІР°С‚СЊ Р»Рё СЌР»РµРјРµРЅС‚ <a> 'В«В«В«'.
      *
      * @param bool $value
      * @return Krugozor_Pagination_Helper
@@ -174,7 +174,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает, показывать ли элемент <a> '»»»'.
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚, РїРѕРєР°Р·С‹РІР°С‚СЊ Р»Рё СЌР»РµРјРµРЅС‚ <a> 'В»В»В»'.
      *
      * @param bool $value
      * @return Krugozor_Pagination_Helper
@@ -187,7 +187,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает, показывать ли элемент <a> '««'.
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚, РїРѕРєР°Р·С‹РІР°С‚СЊ Р»Рё СЌР»РµРјРµРЅС‚ <a> 'В«В«'.
      *
      * @param bool $value
      * @return Krugozor_Pagination_Helper
@@ -200,7 +200,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает, показывать ли элемент <a> '»»'.
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚, РїРѕРєР°Р·С‹РІР°С‚СЊ Р»Рё СЌР»РµРјРµРЅС‚ <a> 'В»В»'.
      *
      * @param bool $value
      * @return Krugozor_Pagination_Helper
@@ -213,7 +213,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает идентификатор фрагмента (#primer) гиперссылок пагинатора.
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ С„СЂР°РіРјРµРЅС‚Р° (#primer) РіРёРїРµСЂСЃСЃС‹Р»РѕРє РїР°РіРёРЅР°С‚РѕСЂР°.
      *
      * @param string
      * @return Krugozor_Pagination_Helper
@@ -226,7 +226,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает CSS-класс каждого элемента <a> в интерфейсе пагинатора.
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ CSS-РєР»Р°СЃСЃ РєР°Р¶РґРѕРіРѕ СЌР»РµРјРµРЅС‚Р° <a> РІ РёРЅС‚РµСЂС„РµР№СЃРµ РїР°РіРёРЅР°С‚РѕСЂР°.
      *
      * @param string
      * @return Krugozor_Pagination_Helper
@@ -239,8 +239,8 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает CSS-класс элемента <span> в интерфейсе пагинатора,
-     * страница которого открыта в текущий момент.
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ CSS-РєР»Р°СЃСЃ СЌР»РµРјРµРЅС‚Р° <span> РІ РёРЅС‚РµСЂС„РµР№СЃРµ РїР°РіРёРЅР°С‚РѕСЂР°,
+     * СЃС‚СЂР°РЅРёС†Р° РєРѕС‚РѕСЂРѕРіРѕ РѕС‚РєСЂС‹С‚Р° РІ С‚РµРєСѓС‰РёР№ РјРѕРјРµРЅС‚.
      *
      * @param string
      * @return Krugozor_Pagination_Helper
@@ -253,7 +253,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает CSS-класс элемента <a> '«««'
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ CSS-РєР»Р°СЃСЃ СЌР»РµРјРµРЅС‚Р° <a> 'В«В«В«'
      *
      * @param string
      * @return Krugozor_Pagination_Helper
@@ -266,7 +266,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает CSS-класс элемента <a> '»»»'
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ CSS-РєР»Р°СЃСЃ СЌР»РµРјРµРЅС‚Р° <a> 'В»В»В»'
      *
      * @param string
      * @return Krugozor_Pagination_Helper
@@ -279,7 +279,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает CSS-класс элемента <a> '««'
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ CSS-РєР»Р°СЃСЃ СЌР»РµРјРµРЅС‚Р° <a> 'В«В«'
      *
      * @param string
      * @return Krugozor_Pagination_Helper
@@ -292,7 +292,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает CSS-класс элемента <a> '»»'
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ CSS-РєР»Р°СЃСЃ СЌР»РµРјРµРЅС‚Р° <a> 'В»В»'
      *
      * @param string
      * @return Krugozor_Pagination_Helper
@@ -305,7 +305,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает CSS-класс элемента <a> '«'
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ CSS-РєР»Р°СЃСЃ СЌР»РµРјРµРЅС‚Р° <a> 'В«'
      *
      * @param string
      * @return Krugozor_Pagination_Helper
@@ -318,7 +318,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает CSS-класс элемента <a> '»'
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ CSS-РєР»Р°СЃСЃ СЌР»РµРјРµРЅС‚Р° <a> 'В»'
      *
      * @param string
      * @return Krugozor_Pagination_Helper
@@ -331,7 +331,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает якорь для элемента <a> '«««'
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЏРєРѕСЂСЊ РґР»СЏ СЌР»РµРјРµРЅС‚Р° <a> 'В«В«В«'
      *
      * @param string
      * @return Krugozor_Pagination_Helper
@@ -344,7 +344,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает якорь для элемента <a> '»»»'
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЏРєРѕСЂСЊ РґР»СЏ СЌР»РµРјРµРЅС‚Р° <a> 'В»В»В»'
      *
      * @param string
      * @return Krugozor_Pagination_Helper
@@ -357,7 +357,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает якорь для элемента <a> '««'
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЏРєРѕСЂСЊ РґР»СЏ СЌР»РµРјРµРЅС‚Р° <a> 'В«В«'
      *
      * @param string
      * @return Krugozor_Pagination_Helper
@@ -370,7 +370,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает якорь для элемента <a> '»»'
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЏРєРѕСЂСЊ РґР»СЏ СЌР»РµРјРµРЅС‚Р° <a> 'В»В»'
      *
      * @param string
      * @return Krugozor_Pagination_Helper
@@ -383,7 +383,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает якорь для элемента <a> '«'
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЏРєРѕСЂСЊ РґР»СЏ СЌР»РµРјРµРЅС‚Р° <a> 'В«'
      *
      * @param string
      * @return Krugozor_Pagination_Helper
@@ -396,7 +396,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Устанавливает якорь для элемента <a> '»'
+     * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЏРєРѕСЂСЊ РґР»СЏ СЌР»РµРјРµРЅС‚Р° <a> 'В»'
      *
      * @param string
      * @return Krugozor_Pagination_Helper
@@ -409,7 +409,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Формирует и возвращает HTML-код строки навигации.
+     * Р¤РѕСЂРјРёСЂСѓРµС‚ Рё РІРѕР·РІСЂР°С‰Р°РµС‚ HTML-РєРѕРґ СЃС‚СЂРѕРєРё РЅР°РІРёРіР°С†РёРё.
      *
      * @param void
      * @return string
@@ -460,7 +460,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Создаёт якорь для элемента <a> в зависимости от типа $this->pagination_type.
+     * РЎРѕР·РґР°С‘С‚ СЏРєРѕСЂСЊ РґР»СЏ СЌР»РµРјРµРЅС‚Р° <a> РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ С‚РёРїР° $this->pagination_type.
      *
      * @param array $params
      * @return string
@@ -482,15 +482,15 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Возвращает строку вида `class="class_name"` если $class_name объявлен и
-     * описан в $this->styles[$class_name].
-     * В обратном случае возвращает строку вида `class="replacement_class_name"`,
-     * если $replacement_class_name объявлен в качестве аргумента метода и
-     * описан в $this->styles[$replacement_class_name].
-     * Если $replacement_class_name не объявлен, возвращается пустая строка.
+     * Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃС‚СЂРѕРєСѓ РІРёРґР° `class="class_name"` РµСЃР»Рё $class_name РѕР±СЉСЏРІР»РµРЅ Рё
+     * РѕРїРёСЃР°РЅ РІ $this->styles[$class_name].
+     * Р’ РѕР±СЂР°С‚РЅРѕРј СЃР»СѓС‡Р°Рµ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃС‚СЂРѕРєСѓ РІРёРґР° `class="replacement_class_name"`,
+     * РµСЃР»Рё $replacement_class_name РѕР±СЉСЏРІР»РµРЅ РІ РєР°С‡РµСЃС‚РІРµ Р°СЂРіСѓРјРµРЅС‚Р° РјРµС‚РѕРґР° Рё
+     * РѕРїРёСЃР°РЅ РІ $this->styles[$replacement_class_name].
+     * Р•СЃР»Рё $replacement_class_name РЅРµ РѕР±СЉСЏРІР»РµРЅ, РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ РїСѓСЃС‚Р°СЏ СЃС‚СЂРѕРєР°.
      *
-     * @param string имя CSS-класса
-     * @param string имя CSS-класса
+     * @param string РёРјСЏ CSS-РєР»Р°СЃСЃР°
+     * @param string РёРјСЏ CSS-РєР»Р°СЃСЃР°
      * @return string
      */
     private function createInlineCssClassDeclaration($class_name, $replacement_class_name=null)
@@ -504,8 +504,8 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Возвращает идентификатор фрагмента с символом #
-     * для подстановки непосредственно в URL-адрес.
+     * Р’РѕР·РІСЂР°С‰Р°РµС‚ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ С„СЂР°РіРјРµРЅС‚Р° СЃ СЃРёРјРІРѕР»РѕРј #
+     * РґР»СЏ РїРѕРґСЃС‚Р°РЅРѕРІРєРё РЅРµРїРѕСЃСЂРµРґСЃС‚РІРµРЅРЅРѕ РІ URL-Р°РґСЂРµСЃ.
      *
      * @param void
      * @return string
@@ -516,7 +516,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Возвращает REQUEST_URI без QUERY_STRING.
+     * Р’РѕР·РІСЂР°С‰Р°РµС‚ REQUEST_URI Р±РµР· QUERY_STRING.
      *
      * @param void
      * @return string
@@ -534,7 +534,7 @@ class Krugozor_Pagination_Helper
     }
 
     /**
-     * Создает строку QUERY_STRING из массива параметров $this->request_uri_params.
+     * РЎРѕР·РґР°РµС‚ СЃС‚СЂРѕРєСѓ QUERY_STRING РёР· РјР°СЃСЃРёРІР° РїР°СЂР°РјРµС‚СЂРѕРІ $this->request_uri_params.
      *
      * @param void
      * @return string
