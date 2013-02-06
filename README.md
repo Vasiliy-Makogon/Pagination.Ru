@@ -8,6 +8,6 @@ RUS
 ENG
 =============
 
-The decision to PHP5 to quickly create pagination for web applications.
+The solution on PHP5.3 to quickly create pagination for web applications.
 
-Installation instructions and examples, please visit <a href="http://www.pagination.ru">http://www.pagination.ru</a>
+Installation instructions and examples, please visit <a href="http://www.pagination.ru">http://www.pagination.ru</a> with russian instructions or do translate this page in google ;)
