@@ -1,6 +1,6 @@
 <?php
 /**
- * @link http://pagination.ru/
+ * @link http://pagination.ru
  * @author Vasiliy Makogon, makogon.vs@gmail.com
  */
 class Krugozor_Pagination_Manager
