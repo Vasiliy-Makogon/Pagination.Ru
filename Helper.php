@@ -3,7 +3,7 @@
  * @link http://pagination.ru/
  * @author Vasiliy Makogon, makogon.vs@gmail.com, makogon-vs@yandex.ru
  */
-class Krugozor_Pagination_Helper
+class Pagination_Helper
 {
     /**
      * Стандартный вид пагинации:
@@ -30,7 +30,7 @@ class Krugozor_Pagination_Helper
     const PAGINATION_INCREMENT_TYPE = 3;
 
     /**
-     * @var Krugozor_Pagination_Manager
+     * @var Pagination_Manager
      */
     private $manager;
 
@@ -114,18 +114,18 @@ class Krugozor_Pagination_Helper
     private $pagination_type;
 
     /**
-     * @param Krugozor_Pagination_Manager $manager
+     * @param Pagination_Manager $manager
      */
-    public function __construct(Krugozor_Pagination_Manager $manager)
+    public function __construct(Pagination_Manager $manager)
     {
         $this->manager = $manager;
     }
 
     /**
-     * Возвращает объект Krugozor_Pagination_Manager
+     * Возвращает объект Pagination_Manager
      *
      * @param void
-     * @return Krugozor_Pagination_Manager
+     * @return Pagination_Manager
      */
     public function getPagination()
     {
@@ -136,7 +136,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает тип интерфейса пагинатора.
      *
      * @param int
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setPaginationType($pagination_type)
     {
@@ -151,7 +151,7 @@ class Krugozor_Pagination_Helper
      *
      * @param string $key
      * @param string $value
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setRequestUriParameter($key, $value)
     {
@@ -164,7 +164,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает, показывать ли элемент <a> '«««'.
      *
      * @param bool $value
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setViewFirstPageLabel($value)
     {
@@ -177,7 +177,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает, показывать ли элемент <a> '»»»'.
      *
      * @param bool $value
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setViewLastPageLabel($value)
     {
@@ -190,7 +190,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает, показывать ли элемент <a> '««'.
      *
      * @param bool $value
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setViewPreviousBlockLabel($value)
     {
@@ -203,7 +203,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает, показывать ли элемент <a> '»»'.
      *
      * @param bool $value
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setViewNextBlockLabel($value)
     {
@@ -216,7 +216,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает идентификатор фрагмента (#primer) гиперссылок пагинатора.
      *
      * @param string
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setFragmentIdentifier($fragment_identifier)
     {
@@ -229,7 +229,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает CSS-класс каждого элемента <a> в интерфейсе пагинатора.
      *
      * @param string
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setCssNormalLinkClass($class)
     {
@@ -243,7 +243,7 @@ class Krugozor_Pagination_Helper
      * страница которого открыта в текущий момент.
      *
      * @param string
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setCssActiveLinkClass($class)
     {
@@ -256,7 +256,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает CSS-класс элемента <a> '«««'
      *
      * @param string
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setCssFirstPageClass($class)
     {
@@ -269,7 +269,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает CSS-класс элемента <a> '»»»'
      *
      * @param string
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setCssLastPageClass($class)
     {
@@ -282,7 +282,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает CSS-класс элемента <a> '««'
      *
      * @param string
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setCssPreviousBlockClass($class)
     {
@@ -295,7 +295,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает CSS-класс элемента <a> '»»'
      *
      * @param string
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setCssNextBlockClass($class)
     {
@@ -308,7 +308,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает CSS-класс элемента <a> '«'
      *
      * @param string
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setCssPreviousPageClass($class)
     {
@@ -321,7 +321,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает CSS-класс элемента <a> '»'
      *
      * @param string
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setCssNextPageClass($class)
     {
@@ -334,7 +334,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает якорь для элемента <a> '«««'
      *
      * @param string
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setFirstPageAnchor($anchor)
     {
@@ -347,7 +347,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает якорь для элемента <a> '»»»'
      *
      * @param string
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setLastPageAnchor($anchor)
     {
@@ -360,7 +360,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает якорь для элемента <a> '««'
      *
      * @param string
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setPreviousBlockAnchor($anchor)
     {
@@ -373,7 +373,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает якорь для элемента <a> '»»'
      *
      * @param string
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setNextBlockAnchor($anchor)
     {
@@ -386,7 +386,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает якорь для элемента <a> '«'
      *
      * @param string
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setPreviousPageAnchor($anchor)
     {
@@ -399,7 +399,7 @@ class Krugozor_Pagination_Helper
      * Устанавливает якорь для элемента <a> '»'
      *
      * @param string
-     * @return Krugozor_Pagination_Helper
+     * @return Pagination_Helper
      */
     public function setNextPageAnchor($anchor)
     {

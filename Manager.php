@@ -3,7 +3,7 @@
  * @link http://pagination.ru
  * @author Vasiliy Makogon, makogon.vs@gmail.com, makogon-vs@yandex.ru
  */
-class Krugozor_Pagination_Manager
+class Pagination_Manager
 {
     /**
      * Максимальное количество записей из СУБД,
@@ -93,7 +93,7 @@ class Krugozor_Pagination_Manager
      * @param int $limit - количество записей из таблицы СУБД на страницу
      * @param int $link_count - количество ссылок на страницы между ссылками пагинатора, т.е.:
      *                          «««  ««  «  $link_count  »  »»  »»»
-     * @param mixed $request Krugozor_Http_Request|$_REQUEST - объект запроса Krugozor_Http_Request или один из
+     * @param mixed $request Http_Request|$_REQUEST - объект запроса Http_Request или один из
      *                                                         суперглобальных массивов $_REQUEST, $_GET или $_POST.
      * @param string $page_var_name - имя ключа переменной из запроса, указывающей страницу для открытия.
      * @param string $separator_var_name - имя ключа переменной из запроса, указывающей блок страниц (сепаратор).
@@ -108,7 +108,7 @@ class Krugozor_Pagination_Manager
         $this->separator_var_name = (string) $separator_var_name;
 
         // Для фреймворка.
-        if (is_object($request) && $request instanceof Krugozor_Http_Request)
+        if (is_object($request) && $request instanceof Http_Request)
         {
             $this->current_sep  = $request->getRequest($separator_var_name, 'decimal') ?: 1;
             $this->current_page = $request->getRequest($page_var_name, 'decimal') ?: ($this->current_sep - 1) * $this->link_count + 1;
