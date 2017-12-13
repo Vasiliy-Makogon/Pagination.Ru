@@ -1,9 +1,7 @@
-<?php 
-/** 
- * @link http://pagination.ru/
- * @author Vasiliy Makogon, makogon.vs@gmail.com, makogon-vs@yandex.ru
- */
-class Pagination_Helper
+<?php
+namespace Krugozor\Pagination;
+
+class Helper
 {
     /**
      * Стандартный вид пагинации:

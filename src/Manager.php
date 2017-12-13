@@ -1,9 +1,7 @@
 <?php
-/**
- * @link http://pagination.ru
- * @author Vasiliy Makogon, makogon.vs@gmail.com, makogon-vs@yandex.ru
- */
-class Pagination_Manager
+namespace Krugozor\Pagination;
+
+class Manager
 {
     /**
      * Максимальное количество записей из СУБД,
