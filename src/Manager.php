@@ -91,13 +91,12 @@ class Manager
      * @param int $limit - количество записей из таблицы СУБД на страницу
      * @param int $link_count - количество ссылок на страницы между ссылками пагинатора, т.е.:
      *                          «««  ««  «  $link_count  »  »»  »»»
-     * @param mixed $request Http_Request|$_REQUEST - объект запроса Http_Request или один из
-     *                                                         суперглобальных массивов $_REQUEST, $_GET или $_POST.
+     * @param mixed $request один из суперглобальных массивов $_REQUEST, $_GET или $_POST.
      * @param string $page_var_name - имя ключа переменной из запроса, указывающей страницу для открытия.
      * @param string $separator_var_name - имя ключа переменной из запроса, указывающей блок страниц (сепаратор).
      * @return void
      */
-    public function __construct($limit = 10, $link_count = 10, $request, $page_var_name = 'page', $separator_var_name = 'sep')
+    public function __construct($limit = 10, $link_count = 10, array $request, $page_var_name = 'page', $separator_var_name = 'sep')
     {
         $this->limit = (int) $limit;
         $this->link_count = (int) $link_count;
@@ -105,23 +104,13 @@ class Manager
         $this->page_var_name = (string) $page_var_name;
         $this->separator_var_name = (string) $separator_var_name;
 
-        // Для фреймворка.
-        if (is_object($request) && $request instanceof Http_Request)
-        {
-            $this->current_sep  = $request->getRequest($separator_var_name, 'decimal') ?: 1;
-            $this->current_page = $request->getRequest($page_var_name, 'decimal') ?: ($this->current_sep - 1) * $this->link_count + 1;
-        }
-        // Для внедрения в любой сторонний код.
-        else if (is_array($request))
-        {
-            $this->current_sep = !empty($request[$separator_var_name]) && is_numeric($request[$separator_var_name])
-                                 ? intval($request[$separator_var_name])
-                                 : 1;
+        $this->current_sep = !empty($request[$separator_var_name]) && is_numeric($request[$separator_var_name])
+                             ? intval($request[$separator_var_name])
+                             : 1;
 
-            $this->current_page = !empty($request[$page_var_name]) && is_numeric($request[$page_var_name])
-                                  ? intval($request[$page_var_name])
-                                  : ($this->current_sep - 1) * $this->link_count + 1;
-        }
+        $this->current_page = !empty($request[$page_var_name]) && is_numeric($request[$page_var_name])
+                              ? intval($request[$page_var_name])
+                              : ($this->current_sep - 1) * $this->link_count + 1;
 
         $this->start_limit = ($this->current_page - 1) * $this->limit;
         $this->stop_limit  = $this->limit;
@@ -204,6 +193,14 @@ class Manager
             }
 
         return $this;
+    }
+
+    /**
+     * @return Helper
+     */
+    public function getHelper()
+    {
+        return new Helper($this);
     }
 
     /**

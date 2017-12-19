@@ -28,7 +28,7 @@ class Helper
     const PAGINATION_INCREMENT_TYPE = 3;
 
     /**
-     * @var Pagination_Manager
+     * @var Manager
      */
     private $manager;
 
@@ -112,18 +112,18 @@ class Helper
     private $pagination_type;
 
     /**
-     * @param Pagination_Manager $manager
+     * @param Manager $manager
      */
-    public function __construct(Pagination_Manager $manager)
+    public function __construct(Manager $manager)
     {
         $this->manager = $manager;
     }
 
     /**
-     * Возвращает объект Pagination_Manager
+     * Возвращает объект Manager
      *
      * @param void
-     * @return Pagination_Manager
+     * @return Manager
      */
     public function getPagination()
     {
@@ -134,7 +134,7 @@ class Helper
      * Устанавливает тип интерфейса пагинатора.
      *
      * @param int
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setPaginationType($pagination_type)
     {
@@ -149,7 +149,7 @@ class Helper
      *
      * @param string $key
      * @param string $value
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setRequestUriParameter($key, $value)
     {
@@ -162,7 +162,7 @@ class Helper
      * Устанавливает, показывать ли элемент <a> '«««'.
      *
      * @param bool $value
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setViewFirstPageLabel($value)
     {
@@ -175,7 +175,7 @@ class Helper
      * Устанавливает, показывать ли элемент <a> '»»»'.
      *
      * @param bool $value
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setViewLastPageLabel($value)
     {
@@ -188,7 +188,7 @@ class Helper
      * Устанавливает, показывать ли элемент <a> '««'.
      *
      * @param bool $value
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setViewPreviousBlockLabel($value)
     {
@@ -201,7 +201,7 @@ class Helper
      * Устанавливает, показывать ли элемент <a> '»»'.
      *
      * @param bool $value
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setViewNextBlockLabel($value)
     {
@@ -214,7 +214,7 @@ class Helper
      * Устанавливает идентификатор фрагмента (#primer) гиперссылок пагинатора.
      *
      * @param string
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setFragmentIdentifier($fragment_identifier)
     {
@@ -227,7 +227,7 @@ class Helper
      * Устанавливает CSS-класс каждого элемента <a> в интерфейсе пагинатора.
      *
      * @param string
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setCssNormalLinkClass($class)
     {
@@ -241,7 +241,7 @@ class Helper
      * страница которого открыта в текущий момент.
      *
      * @param string
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setCssActiveLinkClass($class)
     {
@@ -254,7 +254,7 @@ class Helper
      * Устанавливает CSS-класс элемента <a> '«««'
      *
      * @param string
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setCssFirstPageClass($class)
     {
@@ -267,7 +267,7 @@ class Helper
      * Устанавливает CSS-класс элемента <a> '»»»'
      *
      * @param string
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setCssLastPageClass($class)
     {
@@ -280,7 +280,7 @@ class Helper
      * Устанавливает CSS-класс элемента <a> '««'
      *
      * @param string
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setCssPreviousBlockClass($class)
     {
@@ -293,7 +293,7 @@ class Helper
      * Устанавливает CSS-класс элемента <a> '»»'
      *
      * @param string
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setCssNextBlockClass($class)
     {
@@ -306,7 +306,7 @@ class Helper
      * Устанавливает CSS-класс элемента <a> '«'
      *
      * @param string
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setCssPreviousPageClass($class)
     {
@@ -319,7 +319,7 @@ class Helper
      * Устанавливает CSS-класс элемента <a> '»'
      *
      * @param string
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setCssNextPageClass($class)
     {
@@ -332,7 +332,7 @@ class Helper
      * Устанавливает якорь для элемента <a> '«««'
      *
      * @param string
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setFirstPageAnchor($anchor)
     {
@@ -345,7 +345,7 @@ class Helper
      * Устанавливает якорь для элемента <a> '»»»'
      *
      * @param string
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setLastPageAnchor($anchor)
     {
@@ -358,7 +358,7 @@ class Helper
      * Устанавливает якорь для элемента <a> '««'
      *
      * @param string
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setPreviousBlockAnchor($anchor)
     {
@@ -371,7 +371,7 @@ class Helper
      * Устанавливает якорь для элемента <a> '»»'
      *
      * @param string
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setNextBlockAnchor($anchor)
     {
@@ -384,7 +384,7 @@ class Helper
      * Устанавливает якорь для элемента <a> '«'
      *
      * @param string
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setPreviousPageAnchor($anchor)
     {
@@ -397,7 +397,7 @@ class Helper
      * Устанавливает якорь для элемента <a> '»'
      *
      * @param string
-     * @return Pagination_Helper
+     * @return Helper
      */
     public function setNextPageAnchor($anchor)
     {
@@ -521,12 +521,9 @@ class Helper
      */
     private function createRequestUri()
     {
-        if (strpos($_SERVER["REQUEST_URI"], '?') !== false)
-        {
+        if (strpos($_SERVER["REQUEST_URI"], '?') !== false) {
             return substr($_SERVER["REQUEST_URI"], 0, strpos($_SERVER["REQUEST_URI"], '?'));
-        }
-        else
-        {
+        } else {
             return $_SERVER["REQUEST_URI"];
         }
     }
@@ -541,10 +538,8 @@ class Helper
     {
         $query_string = '';
 
-        foreach ($this->request_uri_params as $key => $value)
-        {
-            if ((string) $value !== '')
-            {
+        foreach ($this->request_uri_params as $key => $value) {
+            if ((string) $value !== '') {
                 $query_string .= $key . '=' . htmlentities(urlencode($value)) . '&amp;';
             }
         }
