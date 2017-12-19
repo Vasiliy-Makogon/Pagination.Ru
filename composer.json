@@ -1,14 +1,14 @@
 {
     "name":"krugozor/pagination",
+    "description": "Решение на >=PHP5.3.0 для быстрого создания постраничной разбивки данных веб-приложений",
     "type":"library",
     "keywords": [
         "mysql pagination",
         "pagination",
         "pagination class"
     ],
-    "description": " Решение на >=PHP5.3.0 для быстрого создания постраничной разбивки данных веб-приложений",
     "require":{
-        "php":">=5.3.0"
+        "php": "^5.3 || ^7.0"
     },
     "authors": [
         {
