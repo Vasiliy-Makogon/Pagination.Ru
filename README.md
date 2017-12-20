@@ -186,9 +186,11 @@ $pagination->setCount(
 while (($row = $result->fetch_assoc()) !== null) {
     $data[] = $row;
 }
+
+include("template.phtml");
 ```
 
-Как видите, всё *очень* просто — вся работа заключена в трёх строчках! 
+Как видите, всё *очень* просто — вся работа пагинации заключена в нескольких строчках! 
 
 #### Работа с шаблоном: вывод записей ####
 
@@ -201,12 +203,14 @@ while (($row = $result->fetch_assoc()) !== null) {
     <title>Бесплатные объявления</title>
 </head>
 <body>
-<?php
-$counter = $pagination->getAutoincrementNum();
-?>
-<?php foreach($data as $advert): ?>
-    <p><?=($counter++)?>. <?=htmlspecialchars($advert['header']);?></p>
-<?php endforeach; ?>
+
+    <?php
+    $counter = $pagination->getAutoincrementNum();
+    ?>
+    <?php foreach($data as $advert): ?>
+        <p><?=($counter++)?>. <?=htmlspecialchars($advert['header']);?></p>
+    <?php endforeach; ?>
+
 </body>
 </html>
 ```
@@ -232,12 +236,14 @@ $counter = $paginationManager->getAutoincrementNum();
     <title>Бесплатные объявления</title>
 </head>
 <body>
-<?php
-$counter = $pagination->getAutodecrementNum();
-?>
-<?php foreach($data as $advert): ?>
-    <p><?=($counter--)?>. <?=htmlspecialchars($advert['advert_header']);?></p>
-<?php endforeach; ?>
+
+    <?php
+    $counter = $pagination->getAutodecrementNum();
+    ?>
+    <?php foreach($data as $advert): ?>
+        <p><?=($counter--)?>. <?=htmlspecialchars($advert['header']);?></p>
+    <?php endforeach; ?>
+
 </body>
 </html>
 ```
