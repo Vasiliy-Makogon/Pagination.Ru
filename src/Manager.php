@@ -4,6 +4,13 @@ namespace Krugozor\Pagination;
 class Manager
 {
     /**
+     * Объект класса Helper;
+     *
+     * @var Helper
+     */
+    private $helper;
+
+    /**
      * Максимальное количество записей из СУБД,
      * которое необходимо выводить на одной странице.
      * Один из аргументов конструктора.
@@ -200,7 +207,11 @@ class Manager
      */
     public function getHelper()
     {
-        return new Helper($this);
+        if ($this->helper === null || !($this->helper instanceof Helper)) {
+            $this->helper = new Helper($this);
+        }
+
+        $this->helper;
     }
 
     /**
