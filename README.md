@@ -101,7 +101,7 @@ $pagination = new Pagination(10, 5, $_REQUEST);
 ```php
 $sql = "SELECT
            SQL_CALC_FOUND_ROWS
-           `message`
+           *
         FROM
            `adverts`
         ORDER BY
