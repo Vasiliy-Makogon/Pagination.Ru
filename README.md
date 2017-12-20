@@ -314,6 +314,45 @@ $counter = $pagination->getAutodecrementNum();
 
 
 Обратите внимние:
-* В строке адреса, в QUERY STRING, присутствуют переданные параметры `param_1=value_1` и `param_2=value_2` - так мы можем передавать необходимые параметры при переходе между страницами. Также, в строке адреса пристутствует указанный идентификатор фрагмента `#foo`.
+* В строке адреса, в QUERY STRING, присутствуют переданные параметры `param_1=value_1` и `param_2=value_2` - так мы можем передавать необходимые параметры при переходе между страницами. Так же, в строке адреса, пристутствует указанный идентификатор фрагмента `#foo`.
 * Были изменены стили ссылок интерфейса пагинатора посредством указания необъодимых классов.
+
+**Можно создавать различные вариации пагинации:**
+
+```php
+    // ... 
+    <?php
+    $pagination->getHelper()
+        // Настройка внешнего вида пагинатора
+        // Хотим получить стандартный вид пагинации
+        ->setPaginationType(\Krugozor\Pagination\Helper::PAGINATION_INCREMENT_TYPE)
+        // Устанавливаем CSS-класс каждого элемента <a> в интерфейсе пагинатора
+        ->setCssNormalLinkClass("normal_link")
+        // Устанавливаем CSS-класс элемента <span> в интерфейсе пагинатора,
+        // страница которого открыта в текущий момент.
+        ->setCssActiveLinkClass("active_link")
+        // Параметр для query string гиперссылки
+        ->setRequestUriParameter("param_1", "value_1")
+        // Параметр для query string гиперссылки
+        ->setRequestUriParameter("param_2", "value_2")
+        // Устанавливаем идентификатор фрагмента гиперссылок пагинатора
+        ->setFragmentIdentifier("result4")
+        // Не показываем сслыки перехода на первую («««)...
+        ->setViewFirstPageLabel(false)
+        // ..и последнюю (»»») страницу
+        ->setViewLastPageLabel(false)
+        // Не показываем ссылки перехода между блоками страниц («« и »»)
+        ->setViewPreviousBlockLabel(false)
+        ->setViewNextBlockLabel(false)
+        // Заменим якоря тегов перехода между страницами (« и »)
+        ->setPreviousPageAnchor("&larr; Туда")
+        ->setNextPageAnchor("Сюда &rarr;");
+    ?>
+   // ...
+```
+
+Результат: 
+
+![](https://github.com/Vasiliy-Makogon/Pagination/blob/master/img/p4.png)
+
 
