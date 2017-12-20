@@ -309,6 +309,7 @@ $counter = $pagination->getAutodecrementNum();
 ```
 
 Результат: 
+
 ![](https://github.com/Vasiliy-Makogon/Pagination/blob/master/img/p3.png)
 
 
