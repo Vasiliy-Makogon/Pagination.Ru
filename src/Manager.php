@@ -211,7 +211,7 @@ class Manager
             $this->helper = new Helper($this);
         }
 
-        $this->helper;
+        return $this->helper;
     }
 
     /**
