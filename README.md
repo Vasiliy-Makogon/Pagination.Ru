@@ -249,3 +249,70 @@ $counter = $pagination->getAutodecrementNum();
 — как видно, записи нумеруются с максимального количества записей в базе и счетчик уменьшается по мере вывода записей. Определять, какой вид числовых идентификаторов использовать — решать вам. Обычно, если записи выводятся начиная с новых (`ORDER BY ``id`` DESC`), то предпочтительно использовать метод `getAutodecrementNum()`, если начиная со старых (`ORDER BY ``id`` ASC`) — `getAutoincrementNum()`. А можно вообще не нумеровать записи — в 80% случаев я так и поступаю, т.к. в визуальная нумерация записей нужна далеко не всегда.
 
 #### Работа с шаблоном: создание интерфейса для перехода между страницами ####
+
+Интерфейс пагинатора создается с помощью объекта `Helper` непосредственно в шаблоне. Класс `Helper` имеет множество методов для гибкой настройки интерфейса пагинации:
+
+```php
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Бесплатные объявления</title>
+    <style type="text/css">
+        .normal_link,
+        .active_link{
+            font-size:15px;
+            border:1px solid #ccc;
+            padding:3px;
+        }
+        .active_link{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+
+    <?php
+    $counter = $pagination->getAutoincrementNum()
+    ?>
+    <?php foreach($data as $advert): ?>
+        <p><?=($counter++)?>. <?=htmlspecialchars($advert['advert_header']);?></p>
+    <?php endforeach; ?>
+
+    <?php
+    $pagination->getHelper()
+        // Настройка внешнего вида пагинатора
+        // Хотим получить стандартный вид пагинации
+        ->setPaginationType(\Krugozor\Pagination\Helper::PAGINATION_NORMAL_TYPE)
+        // Устанавливаем CSS-класс каждого элемента <a> в интерфейсе пагинатора
+        ->setCssNormalLinkClass("normal_link")
+        // Устанавливаем CSS-класс элемента <span> в интерфейсе пагинатора,
+        // страница которого открыта в текущий момент.
+        ->setCssActiveLinkClass("active_link")
+        // Параметр для query string гиперссылки
+        ->setRequestUriParameter("param_1", "value_1")
+        // Параметр для query string гиперссылки
+        ->setRequestUriParameter("param_2", "value_2")
+        // Устанавливаем идентификатор фрагмента гиперссылок пагинатора
+        ->setFragmentIdentifier("foo");
+    ?>
+    <div>
+        <hr>
+        Всего записей: <strong><?=$pagination->getCount()?></strong>
+        <?php if ($pagination->getCount()): ?>
+            <br /><br /><span>Страницы:</span>
+            <?=$pagination->getHelper()->getHtml()?>
+        <?php endif; ?>
+    </div>
+
+</body>
+</html>
+```
+
+Результат: 
+![](https://github.com/Vasiliy-Makogon/Pagination/blob/master/img/p3.png)
+
+
+Обратите внимние:
+* В строке адреса, в QUERY STRING, присутствуют переданные параметры `param_1=value_1` и `param_2=value_2` - так мы можем передавать необходимые параметры при переходе между страницами. Также, в строке адрепса пристутствует указанный идентификатор фрагмента `#foo`.
+* Был изменен CSS ссылок интерфейса пагинатора.
+
