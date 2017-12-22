@@ -163,6 +163,10 @@ include("template.phtml");
 
 ```php
 <?php
+// Только хардкор! 
+error_reporting(E_ALL);
+ini_set('display_errors', true);
+
 // Предположим, что установили библиотеку через composer
 require  './vendor/autoload.php';
 // Алиас для краткости
