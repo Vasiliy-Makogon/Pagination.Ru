@@ -103,7 +103,7 @@ class Manager
      * @param string $separator_var_name - имя ключа переменной из запроса, указывающей блок страниц (сепаратор).
      * @return void
      */
-    public function __construct($limit = 10, $link_count = 10, array $request, $page_var_name = 'page', $separator_var_name = 'sep')
+    public function __construct($limit = 10, $link_count = 10, array $request = [], $page_var_name = 'page', $separator_var_name = 'sep')
     {
         $this->limit = (int) $limit;
         $this->link_count = (int) $link_count;
